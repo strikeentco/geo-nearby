@@ -155,7 +155,6 @@ console.log(Geo(dataSet).limit(2).nearBy(64.54, 40.54, [250, 30000]));
 
 **Note:** *Don't use too small distance for start value. For values, less than 250 script execution may take too much time. 250 - 500 is usually sufficient.*
 
-[More examples](https://github.com/)
 
 ## Methods
 * `Geo(dataSet, options)` - Constructor.
