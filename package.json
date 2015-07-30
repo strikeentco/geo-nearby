@@ -1,0 +1,25 @@
+{
+  "name": "geo-nearby",
+  "author": "Alexey Bystrov <strikeentco@gmail.com>",
+  "version": "1.0.0",
+  "description": "Search for nearby locations without DB",
+  "keywords": [
+      "geo nearby"
+      "geolocation",
+      "geo",
+      "nearby",
+      "proximity",
+      "locations",
+      "spatial index",
+      "geohash"
+      "2D spatial index",
+      "spatial",
+      "index",
+      "no db"
+  ],
+  "main": "./main.js",
+  "dependencies": {
+    "ngeohash": "^0.6.0"
+  },
+  "license": "MIT"
+}
