@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "description": "Search for nearby locations without DB",
   "keywords": [
-      "geo nearby"
+      "geo nearby",
       "geolocation",
       "geo",
       "nearby",
       "proximity",
       "locations",
       "spatial index",
-      "geohash"
+      "geohash",
       "2D spatial index",
       "spatial",
       "index",
