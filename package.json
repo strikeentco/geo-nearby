@@ -1,7 +1,7 @@
 {
   "name": "geo-nearby",
   "author": "Alexey Bystrov <strikeentco@gmail.com>",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Search for nearby locations without DB",
   "keywords": [
       "geo nearby",
@@ -18,6 +18,13 @@
       "no db"
   ],
   "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strikeentco/geo-nearby.git"
+  },
+  "bugs": {
+    "url": "https://github.com/strikeentco/geo-nearby/issues"
+  },
   "dependencies": {
     "ngeohash": "^0.6.0"
   },
