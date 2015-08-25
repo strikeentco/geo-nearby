@@ -11,11 +11,11 @@ var dataOne = [
   {i:543704, g:3819087592574594}
 ];
 var dataTwo = [
-  {_id: 581043, name: 'Arkhangel’skaya Oblast’', country:'RU', coord:{lon:44, lat:64}, geo:3728383955366409, admin1:'Arkhangelskaya'},
-  {_id: 581049, name: 'Arkhangelsk', country:'RU', coord:{lon:40.5433, lat:64.5401}, geo:3727753082411929, admin1:'Arkhangelskaya'},
-  {_id: 496285, name: 'Severodvinsk', country:'RU', coord:{lon:39.8302, lat:64.5635}, geo:3727718899203691, admin1:'Arkhangelskaya'},
-  {_id: 518909, name: 'Novodvinsk', country:'RU', coord:{lon:40.8122, lat:64.4165}, geo:3727843024015751, admin1:'Arkhangelskaya'},
-  {_id: 543704, name: 'Kotlas', country:'RU', coord:{lon:46.64963, lat:61.25745}, geo:3819087592574594, admin1:'Arkhangelskaya'}
+  {_id: 581043, name: 'Arkhangel’skaya Oblast’', country:'RU', coord:{lon:44,       lat:64},       geo:3728383955366409, admin1:'Arkhangelskaya'},
+  {_id: 581049, name: 'Arkhangelsk',             country:'RU', coord:{lon:40.5433,  lat:64.5401},  geo:3727753082411929, admin1:'Arkhangelskaya'},
+  {_id: 496285, name: 'Severodvinsk',            country:'RU', coord:{lon:39.8302,  lat:64.5635},  geo:3727718899203691, admin1:'Arkhangelskaya'},
+  {_id: 518909, name: 'Novodvinsk',              country:'RU', coord:{lon:40.8122,  lat:64.4165},  geo:3727843024015751, admin1:'Arkhangelskaya'},
+  {_id: 543704, name: 'Kotlas',                  country:'RU', coord:{lon:46.64963, lat:61.25745}, geo:3819087592574594, admin1:'Arkhangelskaya'}
 ];
 var dataThree = [
   {i:'Perth',     g:3149853951719405},
