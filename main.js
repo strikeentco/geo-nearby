@@ -16,6 +16,7 @@ module.exports = function(data, options) {
 function Geo(data, options) {
   this.data = data || [];
   this.geo = options.geo || 'g';
+  this._sorted = options.sorted || false;
   this._limit = this._constLimit = (options.limit && options.limit > 0) ? options.limit : 0;
   return this;
 }
@@ -39,7 +40,10 @@ Geo.prototype.limit = function(limit) {
 Geo.prototype.nearBy = function(lat, lon, radius) {
   var limit = this._limit;
   this._limit = this._constLimit;
-  if (isArray(radius)) {
+
+  if (!lat || !lon || !radius) {
+    return [];
+  } else if (isArray(radius)) {
     var replies = [];
     var range = rangeBetween(radius[0], radius[1]);
     for (var i = 0; i < range.length; i++) {

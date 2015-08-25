@@ -1,16 +1,14 @@
 geo-nearby
 ==========
-
+[![Build Status](https://travis-ci.org/strikeentco/geo-nearby.svg)](https://travis-ci.org/strikeentco/geo-nearby) [![License](https://img.shields.io/github/license/strikeentco/geo-nearby.svg?style=flat)](https://github.com/strikeentco/geo-nearby/blob/master/LICENSE)  [![npm](https://img.shields.io/npm/v/geo-nearby.svg?style=flat)](https://www.npmjs.com/package/geo-nearby) [![bitHound Score](https://www.bithound.io/github/strikeentco/geo-nearby/badges/score.svg)](https://www.bithound.io/github/strikeentco/geo-nearby)
 
 **Note:** *This module stores all data in memory - remember that.*
 
+Uber fast nearby locations search by coordinates. Without DB.
 
-Search for nearby locations without DB usage.<br>*Inspired by [geo-proximity](https://github.com/arjunmehta/node-geo-proximity).*
+# Usage
 
-
-## Usage
-
-```bash
+```sh
 npm install geo-nearby
 ```
 
@@ -20,13 +18,13 @@ Usage of this module is fairly simple. Just include and add some data - that's i
 var Geo = require('geo-nearby');
 
 var dataSet = [
-  { i: 'Perth', g: 3149853951719405 },
-  { i: 'Adelaide', g: 3243323516150966 },
+  { i: 'Perth',     g: 3149853951719405 },
+  { i: 'Adelaide',  g: 3243323516150966 },
   { i: 'Melbourne', g: 3244523307653507 },
-  { i: 'Canberra', g: 3251896081369449 },
-  { i: 'Sydney', g: 3252342838034651 },
-  { i: 'Brisbane', g: 3270013708086451 }
-  { i: 'Sydney', g: 3252342838034651 }
+  { i: 'Canberra',  g: 3251896081369449 },
+  { i: 'Sydney',    g: 3252342838034651 },
+  { i: 'Brisbane',  g: 3270013708086451 },
+  { i: 'Sydney',    g: 3252342838034651 }
 ];
 
 console.log(Geo(dataSet).nearBy(-33.87, 151.2, 5000)); // 5000 - 5km
@@ -39,21 +37,21 @@ If you want to change property name, you can do that with options:
 var Geo = require('geo-nearby');
 
 var dataSet = [
-  { id: 1, name: 'Perth', geoHash: 3149853951719405 },
-  { id: 2, name: 'Adelaide', geoHash: 3243323516150966 },
+  { id: 1, name: 'Perth',     geoHash: 3149853951719405 },
+  { id: 2, name: 'Adelaide',  geoHash: 3243323516150966 },
   { id: 3, name: 'Melbourne', geoHash: 3244523307653507 },
-  { id: 4, name: 'Canberra', geoHash: 3251896081369449 },
-  { id: 5, name: 'Sydney', geoHash: 3252342838034651 },
-  { id: 6, name: 'Brisbane', geoHash: 3270013708086451 }
-  { id: 7, name: 'Sydney', geoHash: 3252342838034651 }
+  { id: 4, name: 'Canberra',  geoHash: 3251896081369449 },
+  { id: 5, name: 'Sydney',    geoHash: 3252342838034651 },
+  { id: 6, name: 'Brisbane',  geoHash: 3270013708086451 },
+  { id: 7, name: 'Sydney',    geoHash: 3252342838034651 }
 ];
 
 console.log(Geo(dataSet, {geo: 'geoHash'}).nearBy(-33.87, 151.2, 5000));
 ```
 
-### Data set
+## Data set
 
-For best performance is recommended to use the default data set syntax:
+For best performance it is recommended to use the default data set syntax:
 
 ```javascript
 var dataSet = [
@@ -64,7 +62,7 @@ var dataSet = [
 ];
 ```
 
-You can use a `createCompactSet` method for creating a data set with recommended syntax of your data.
+You can use a [`createCompactSet`](#geodatasetcreatecompactsetoptions) method for creating a data set with recommended syntax of your data.
 
 ```javascript
 var data = [
@@ -77,10 +75,10 @@ var data = [
 ];
 
 var dataSet = Geo(data).createCompactSet();
-console.log(Geo(dataSet).nearBy(-33.87, 151.2, 5000));
+console.log(Geo(dataSet, {sorted: true}).nearBy(-33.87, 151.2, 5000));
 ```
 
-You also can change default values for a `createCompactSet` method if your data looks different.
+You also can change default values for a [`createCompactSet`](#geodatasetcreatecompactsetoptions) method if your data looks different.
 
 ```javascript
 var data = [
@@ -92,7 +90,7 @@ var data = [
 ];
 
 var dataSet = Geo(data).createCompactSet({id: '_id', lat: ['coord', 'lat'], lon: ['coord', 'lon']});
-console.log(Geo(dataSet).nearBy(64.54, 40.54, 5000));
+console.log(Geo(dataSet, {sorted: true}).nearBy(64.54, 40.54, 5000));
 ```
 
 If you have a huge data it may be more wisely save them to file:
@@ -108,12 +106,12 @@ And then load in variable:
 ```javascript
 var dataSet = JSON.parse(fs.readFileSync('./compact.set.json', 'utf8'));
 
-console.log(Geo(dataSet).nearBy(64.54, 40.54, 5000));
+console.log(Geo(dataSet, {sorted: true}).nearBy(64.54, 40.54, 5000));
 ```
 
-## Advanced usage
+# Advanced usage
 
-### Limiting results
+## Limiting results
 
 For limiting results, you have two ways:
 
@@ -129,7 +127,7 @@ console.log(foo.nearBy(-33.87, 151.2, 5000));
 ```
 In all these cases, the results will be limited to 1.
 
-**2.** Define limit by `limit()` method. That allows you to define a temporary limit for results.<br>
+**2.** Define limit by `limit()` method. That allows you to define a temporary limit for results.
 
 ```javascript
 console.log(Geo(dataSet, {geo: 'geo'}).limit(2).nearBy(64.54, 40.54, 5000)); //up to 2
@@ -144,7 +142,7 @@ console.log(bar.nearBy(64.54, 40.54, 5000)); //up to 1. Options limit - permanen
 console.log(bar.limit(2).nearBy(64.54, 40.54, 5000)); //up to 2
 ```
 
-### A range of distances
+## A range of distances
 
 For a more precise definition, you can use a range of distances.
 It's a bit slower but more accurate.
@@ -155,39 +153,56 @@ console.log(Geo(dataSet).limit(2).nearBy(64.54, 40.54, [250, 30000]));
 
 **Note:** *Don't use too small distance for start value. For values, less than 250 script execution may take too much time. 250 - 500 is usually sufficient.*
 
+## Binary search
 
-## Methods
-* `Geo(dataSet, options)` - Constructor.
-  * `dataSet` - *(array)* - data.
-  * `options` - *(object)* - options:
-    + `geo` - *(string)* - key path **(by default = 'g')**.
-    + `limit` - *(integer)* - limit results **(by default = 0, i.e., no limits)**.
+If you created data set by [`createCompactSet`](#geodatasetcreatecompactsetoptions) method or your own data set is sorted by `geohash` property in ascending order, you can activate extremely fast binary search.
+
+Just set `sorted` property as `true` in [Geo](#geodataset-optionsnearbylat-lon-distance) `options`.
+
+A binary search is 20 times faster than normal.
 
 ```javascript
-Geo(dataSet, {geo: 'geo', limit: 1});
+console.log(Geo(dataSet, {sorted: true}).limit(1).nearBy(64.54, 40.54, [250, 30000]));
 ```
-* `Geo(dataSet).createCompactSet(options)` - Method creates data set.
-  * `dataSet` - *(array)* - data.
-  * `options` - *(object)* - options:
-    + `id` - *(string|array)* - key (name|path) **(by default = 2)**.
-    + `lat` - *(string|array)* - key (name|path) **(by default = 0)**.
-    + `lon` - *(string|array)* - key (name|path) **(by default = 1)**.
-    + `sort` - *(string)* - sort by geohash **(by default = 'asc')**.
-    + `file` - *(string)* - file path **(by default = false)**.
+
+# Methods
+
+## Geo(dataSet, [options]).nearBy(lat, lon, distance)
+
+Method found nearby locations.
+
+### Params:
+
+* **dataSet** (*Array*) - Data set.
+* **lat** (*Float*) - Latitude.
+* **lon** (*Float*) - Longitude.
+* **distance** (*Integer|Array*) - Distance in meters.
+* **[options]** (*Object*) - Options:
+  * **geo** (*String*) - Key path (by default = 'g').
+  * **limit** (*Integer*) - Limit results (by default no limits).
+  * **sorted** (*Boolean*) - If data set is sorted in ascending order, set `sorted` as `true` it will enable [binary search](#binary-search) (uber fast mode).
 
 ```javascript
-var dataSet = Geo(data).createCompactSet({id: ['names', 'name', 'id'], sort: 'desc'});
+Geo(dataSet, {geo: 'geo', limit: 1, sorted: true}).nearBy(64.54, 40.54, [500, 300000]);
+```
+
+## Geo(dataSet).createCompactSet([options])
+
+Method creates data set.
+
+### Params:
+
+* **dataSet** (*Array*) - Data set.
+* **[options]** (*Object*) - Options:
+  * **id** (*String|Array*) - Key (name|path) (by default = 2).
+  * **lat** (*String|Array*) - Key (name|path) (by default = 0).
+  * **lon** (*String|Array*) - Key (name|path) (by default = 1).
+  * **file** (*String*) - File path to save.
+
+```javascript
+var dataSet = Geo(data).createCompactSet({id: ['names', 'name', 'id']});
 
 Geo(data).createCompactSet({id: 2, lat: 0, lon: 1, file: './compact.set.json'});
-```
-* `Geo(dataSet).limit(0).nearBy(lat, lon, distance)` - Method found nearby locations.
-  + `lat` - *(float)* - latitude.
-  + `lon` - *(float)* - longitude.
-  + `distance` - *(integer|array)* - distance in meters.
-  + `limit()` - *(integer)* - limit results **(by default = 0, i.e., no limits)**.
-
-```javascript
-Geo(dataSet).limit(1).nearBy(64.54, 40.54, [500, 300000]);
 ```
 
 ## License

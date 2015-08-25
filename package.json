@@ -1,23 +1,26 @@
 {
   "name": "geo-nearby",
   "author": "Alexey Bystrov <strikeentco@gmail.com>",
-  "version": "1.0.1",
-  "description": "Search for nearby locations without DB",
+  "version": "1.1.0",
+  "description": "Uber fast nearby locations search by coordinates. Without DB.",
   "keywords": [
-      "geo nearby",
-      "geolocation",
-      "geo",
-      "nearby",
-      "proximity",
-      "locations",
-      "spatial index",
-      "geohash",
-      "2D spatial index",
-      "spatial",
-      "index",
-      "no db"
+    "geo nearby",
+    "geolocation",
+    "geo",
+    "nearby",
+    "proximity",
+    "locations",
+    "spatial index",
+    "geohash",
+    "2D spatial index",
+    "spatial",
+    "index",
+    "no db"
   ],
   "main": "./main.js",
+  "scripts": {
+    "test": "mocha test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/strikeentco/geo-nearby.git"
@@ -27,6 +30,10 @@
   },
   "dependencies": {
     "ngeohash": "^0.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.4"
   },
   "license": "MIT"
 }
