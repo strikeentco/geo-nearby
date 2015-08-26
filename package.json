@@ -1,7 +1,7 @@
 {
   "name": "geo-nearby",
   "author": "Alexey Bystrov <strikeentco@gmail.com>",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Uber fast nearby locations search by coordinates. Without DB.",
   "keywords": [
     "geo nearby",
