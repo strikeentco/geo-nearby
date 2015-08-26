@@ -19,7 +19,9 @@
   ],
   "main": "./main.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "test-on-travis": "istanbul cover --report lcovonly ./node_modules/mocha/bin/_mocha",
+    "upload-to-cc": "codeclimate-test-reporter < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
@@ -33,7 +35,9 @@
   },
   "devDependencies": {
     "mocha": "^2.2.5",
-    "should": "^7.0.4"
+    "should": "^7.0.4",
+    "istanbul": "^0.3.18",
+    "codeclimate-test-reporter": "^0.1.0"
   },
   "license": "MIT"
 }

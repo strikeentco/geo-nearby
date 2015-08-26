@@ -59,8 +59,8 @@ var tests = [
     limit: 1
   },
   {
-    name: 'Geo(dataFour).createCompactSet()',
-    data: Geo(dataFour).createCompactSet(),
+    name: 'Geo(dataFour).createCompactSet({file: \'./test.json\'})',
+    data: Geo(dataFour).createCompactSet({file: './test.json'}),
     expected: dataThree,
     compactSet: true
   },
@@ -109,6 +109,7 @@ tests.forEach(function(test) {
     describe(test.name, function() {
       it('should create compact set', function() {
         should(test.data).be.eql(test.expected);
+        require('fs').unlink('./test.json');
       });
     });
   } else {

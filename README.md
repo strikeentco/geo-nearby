@@ -1,6 +1,6 @@
 geo-nearby
 ==========
-[![Build Status](https://travis-ci.org/strikeentco/geo-nearby.svg)](https://travis-ci.org/strikeentco/geo-nearby) [![License](https://img.shields.io/github/license/strikeentco/geo-nearby.svg?style=flat)](https://github.com/strikeentco/geo-nearby/blob/master/LICENSE)  [![npm](https://img.shields.io/npm/v/geo-nearby.svg?style=flat)](https://www.npmjs.com/package/geo-nearby) [![bitHound Score](https://www.bithound.io/github/strikeentco/geo-nearby/badges/score.svg)](https://www.bithound.io/github/strikeentco/geo-nearby)
+[![Build Status](https://travis-ci.org/strikeentco/geo-nearby.svg)](https://travis-ci.org/strikeentco/geo-nearby) [![License](https://img.shields.io/github/license/strikeentco/geo-nearby.svg?style=flat)](https://github.com/strikeentco/geo-nearby/blob/master/LICENSE)  [![npm](https://img.shields.io/npm/v/geo-nearby.svg?style=flat)](https://www.npmjs.com/package/geo-nearby) [![Test Coverage](https://codeclimate.com/github/strikeentco/geo-nearby/badges/coverage.svg)](https://codeclimate.com/github/strikeentco/geo-nearby/coverage) [![bitHound Score](https://www.bithound.io/github/strikeentco/geo-nearby/badges/score.svg)](https://www.bithound.io/github/strikeentco/geo-nearby)
 
 **Note:** *This module stores all data in memory - remember that.*
 
