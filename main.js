@@ -47,10 +47,10 @@ Geo.prototype.nearBy = function(lat, lon, radius) {
     var replies = [];
     var range = rangeBetween(radius[0], radius[1]);
     for (var i = 0; i < range.length; i++) {
-      var l = _nearBy(this, lat, lon, range[i], limit) || [];
-      if (limit === 1 && l.length === 1) {
+      var l = _nearBy(this, lat, lon, range[i], limit);
+      if (l && limit === 1 && l.length === 1) {
         return l;
-      } else if (l.length) {
+      } else if (l && l.length) {
         replies.push(l);
         replies = uniq(flatten(replies));
         if (limit && replies.length >= limit) {
@@ -59,11 +59,7 @@ Geo.prototype.nearBy = function(lat, lon, radius) {
       }
     }
 
-    if (limit > 0) {
-      return replies.slice(0, limit);
-    } else {
-      return replies;
-    }
+    return replies;
   } else {
     if (limit > 0) {
       return _nearBy(this, lat, lon, radius, limit).slice(0, limit);
