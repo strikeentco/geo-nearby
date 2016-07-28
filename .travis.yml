@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "stable"
-  - "0.12"
-  - "iojs"
-script: npm install istanbul && npm run-script test-on-travis
+  - "6"
+  - "5"
+  - "4"
+script: npm install istanbul && npm run lint && npm run test-on-travis
 after_success:
   - npm install codeclimate-test-reporter && codeclimate-test-reporter < ./coverage/lcov.info

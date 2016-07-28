@@ -1,0 +1,22 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "consistent-return": 0,
+    "func-names": 0,
+    "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
+    "no-param-reassign": 0,
+    "no-restricted-syntax": 0,
+    "no-shadow": [2, { "allow": ["err", "n"] }],
+    "no-underscore-dangle": 0,
+    "prefer-rest-params": 0,
+    "strict": 0
+  }
+}

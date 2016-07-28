@@ -1,8 +1,11 @@
 {
   "name": "geo-nearby",
   "author": "Alexey Bystrov <strikeentco@gmail.com>",
-  "version": "1.1.1",
-  "description": "Uber fast nearby locations search by coordinates. Without DB.",
+  "version": "2.0.0",
+  "description": "Uber fast nearby locations search by coordinates. Supports GeoJSON.",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "keywords": [
     "geo nearby",
     "geolocation",
@@ -10,16 +13,24 @@
     "nearby",
     "proximity",
     "locations",
+    "places",
     "spatial index",
     "geohash",
     "2D spatial index",
     "spatial",
     "index",
-    "no db"
+    "geojson"
   ],
   "main": "./main.js",
+  "files": [
+    "lib",
+    "main.js"
+  ],
   "scripts": {
     "test": "mocha test",
+    "lint": "eslint main.js lib/**",
+    "check": "npm run lint && npm run test",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "test-on-travis": "istanbul cover --report lcovonly ./node_modules/mocha/bin/_mocha"
   },
   "repository": {
@@ -33,8 +44,13 @@
     "ngeohash": "^0.6.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.2",
-    "should": "^7.1.0"
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.11.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "mocha": "^2.5.3",
+    "should": "^10.0.0"
   },
   "license": "MIT"
 }

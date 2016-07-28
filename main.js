@@ -1,70 +1,81 @@
 'use strict';
 
-var _nearBy = require('./lib/base').nearBy;
-var _createCompactSet = require('./lib/base').createCompactSet;
-var helpers = require('./lib/helpers');
-var isArray = helpers.isArray;
-var flatten = helpers.flatten;
-var uniq = helpers.uniq;
-var rangeBetween = helpers.rangeBetween;
+const nearBy = require('./lib/base').nearBy;
+const createCompactSet = require('./lib/base').createCompactSet;
+const helpers = require('./lib/helpers');
+const isArray = helpers.isArray;
+const isGeoJSON = helpers.isGeoJSON;
+const uniq = helpers.uniq;
+const rangeBetween = helpers.rangeBetween;
 
-module.exports = function(data, options) {
-  options = options || {};
-  return new Geo(data, options);
-};
+class Geo {
+  constructor(data, opts) {
+    opts = opts || {};
+    this.data = data || [];
+    this.hash = opts.hash || 'g';
+    this.setOptions = opts.setOptions || false;
+    this._sort = opts.sort || false;
+    this._sorted = opts.sorted || false;
+    this._limit = this._constLimit = (opts.limit && opts.limit > 0) ? opts.limit : 0;
 
-function Geo(data, options) {
-  this.data = data || [];
-  this.geo = options.geo || 'g';
-  this._sorted = options.sorted || false;
-  this._limit = this._constLimit = (options.limit && options.limit > 0) ? options.limit : 0;
-  return this;
-}
-
-Geo.prototype.createCompactSet = function(options) {
-  options || (options = {});
-  options.file || (options.file = false);
-  options.id || (options.id = 2);
-  options.sort || (options.sort = 'asc');
-  options.lat || (options.lat = 0);
-  options.lon || (options.lon = 1);
-
-  return _createCompactSet(this.data, options);
-};
-
-Geo.prototype.limit = function(limit) {
-  this._limit = (limit > 0) ? limit : 0;
-  return this;
-};
-
-Geo.prototype.nearBy = function(lat, lon, radius) {
-  var limit = this._limit;
-  this._limit = this._constLimit;
-
-  if (!lat || !lon || !radius) {
-    return [];
-  } else if (isArray(radius)) {
-    var replies = [];
-    var range = rangeBetween(radius[0], radius[1]);
-    for (var i = 0; i < range.length; i++) {
-      var l = _nearBy(this, lat, lon, range[i], limit);
-      if (l && limit === 1 && l.length === 1) {
-        return l;
-      } else if (l && l.length) {
-        replies.push(l);
-        replies = uniq(flatten(replies));
-        if (limit && replies.length >= limit) {
-          return replies.slice(0, limit);
-        }
-      }
-    }
-
-    return replies;
-  } else {
-    if (limit > 0) {
-      return _nearBy(this, lat, lon, radius, limit).slice(0, limit);
-    } else {
-      return _nearBy(this, lat, lon, radius);
+    if ((this._sort || this.setOptions) && !this._sorted) {
+      this._sorted = true;
+      this.data = Geo.createCompactSet(this.data, Object.assign({
+        hash: this.hash
+      }, this.setOptions));
+      this.hash = 'g';
     }
   }
-};
+
+  static createCompactSet(data, opts) {
+    opts = Object.assign({}, {
+      file: false,
+      id: 2,
+      lat: 0,
+      lon: 1
+    }, opts);
+
+    return createCompactSet(data, opts);
+  }
+
+  limit(limit) {
+    this._limit = (limit > 0) ? limit : 0;
+    return this;
+  }
+
+  nearBy(lat, lon, radius) {
+    const limit = this._limit;
+    this._limit = this._constLimit;
+
+    if (isGeoJSON(this.data)) {
+      throw new TypeError('data must be an array, for GeoJSON please specify setOptions');
+    }
+
+    if (!lat || !lon || !radius) {
+      return [];
+    } else if (isArray(radius)) {
+      let replies = [];
+      const range = rangeBetween(radius[0], radius[1]);
+      for (const item of range) {
+        const data = nearBy(this, { lat, lon, radius: item, limit });
+        if (limit === 1 && data && data.length === 1) {
+          return data;
+        } else if (data && data.length) {
+          replies = replies.concat(data);
+          replies = uniq(replies);
+          if (limit && replies.length >= limit) {
+            return replies.slice(0, limit);
+          }
+        }
+      }
+
+      return replies;
+    }
+    if (limit > 0) {
+      return nearBy(this, { lat, lon, radius, limit }).slice(0, limit);
+    }
+    return nearBy(this, { lat, lon, radius });
+  }
+}
+
+module.exports = Geo;
