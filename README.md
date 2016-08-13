@@ -1,4 +1,4 @@
-geo-nearby [![License](https://img.shields.io/github/license/strikeentco/geo-nearby.svg)](https://github.com/strikeentco/geo-nearby/blob/master/LICENSE)  [![npm](https://img.shields.io/npm/v/geo-nearby.svg)](https://www.npmjs.com/package/geo-nearby)
+geo-nearby [![License](https://img.shields.io/npm/l/geo-nearby.svg)](https://github.com/strikeentco/geo-nearby/blob/master/LICENSE)  [![npm](https://img.shields.io/npm/v/geo-nearby.svg)](https://www.npmjs.com/package/geo-nearby)
 ==========
 [![Build Status](https://travis-ci.org/strikeentco/geo-nearby.svg)](https://travis-ci.org/strikeentco/geo-nearby) [![node](https://img.shields.io/node/v/geo-nearby.svg)](https://www.npmjs.com/package/geo-nearby)  [![Test Coverage](https://codeclimate.com/github/strikeentco/geo-nearby/badges/coverage.svg)](https://codeclimate.com/github/strikeentco/geo-nearby/coverage) [![bitHound Score](https://www.bithound.io/github/strikeentco/geo-nearby/badges/score.svg)](https://www.bithound.io/github/strikeentco/geo-nearby)
 
@@ -238,7 +238,7 @@ Constructor.
   * **sort** (*Boolean*) - Will sort data set with introsort algorithm
   * **sorted** (*Boolean*) - If data set is sorted in ascending order, set `sorted` as `true` it will enable [binary search](#binary-search) (uber fast mode)
   * **setOptions** (*Object*) - Options from [createCompactSet](#createcompactsetdataset-options):
-    * **hash** (*String|Array*) - Key (name|path) (by default = 'g')
+    * **hash** (*String|Array*) - Key (name|path) (by default inherits `hash` from above)
     * **id** (*String|Array*) - Key (name|path) (by default = 2)
     * **lat** (*String|Array*) - Key (name|path) (by default = 0)
     * **lon** (*String|Array*) - Key (name|path) (by default = 1)
@@ -286,7 +286,7 @@ Static method.
 
 * **dataSet** (*String|Array|Object*) - Data set (JSON, GeoJSON, etc)
 * **[options]** (*Object*) - Options:
-  * **hash** (*String|Array*) - Key (name|path) (by default = 'g')
+  * **hash** (*String|Array*) - Key (name|path)
   * **id** (*String|Array*) - Key (name|path) (by default = 2)
   * **lat** (*String|Array*) - Key (name|path) (by default = 0)
   * **lon** (*String|Array*) - Key (name|path) (by default = 1)
